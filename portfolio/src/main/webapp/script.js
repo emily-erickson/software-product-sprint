@@ -1,28 +1,47 @@
-// Copyright 2020 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+async function showRandomFact() {
+    const responseFromServer = await fetch('/random-fact');
+    const facts = await responseFromServer.json();
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+    const randomNumber = Math.floor(Math.random() * 3);
+    let selectedFact = "";
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+    if (randomNumber == 0) {
+        selectedFact = facts[0];
+    }else if (randomNumber == 1) {
+        selectedFact = facts[1];
+    }else{
+        selectedFact = facts[2];
+    }
+    const dateContainer = document.getElementById('fact-container');
+    dateContainer.innerText = selectedFact;
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+async function showCommunications() {
+    const responseFromServer = await fetch('/view-communications');
+    const communications = await responseFromServer.json();
+
+    const communicationsListElement = document.getElementById('communications-container');
+    communicationsListElement.innerHTML = '';
+    
+    for (let i=0; i < communications.length; i++) {
+        communicationsListElement.appendChild(createBoldElement("Message " + (i+1)));
+        communicationsListElement.appendChild(createListElement('Name: ' + communications[i].name));
+        communicationsListElement.appendChild(createListElement('Email: ' + communications[i].email));
+        communicationsListElement.appendChild(createListElement('Reason: ' + communications[i].reason));
+        communicationsListElement.appendChild(createListElement('Message: ' + communications[i].message));
+    }
+    
+}
+
+
+function createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
+}
+
+function createBoldElement(text) {
+    const bElement = document.createElement('b');
+    bElement.innerText = text;
+    return bElement;
 }
