@@ -1,61 +1,236 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="script.js"></script>
-  </head>
-  <body>
-    <!--
-    <div id="content">
-      <h1>Emily's Portfolio</h1>
-      <p>This is my portfolio. See there is text.</p>
-      <p>Click <a href="/hello">here</a> to see content created by server code.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-    </div>
-    -->
+    <title>Emily's Portfolio</title>
+    <style>
+        section{
+            padding: 60px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark text-white bg-dark"> 
+        <div class="container-xxl">
+            <a href="#intro" class="navbar-brand">
+                <span class="fw-bold text-white h2">
+                    <i class="bi bi-chevron-double-right"></i>
+                     Emily Erickson
+                </span>
+            </a>
+            <!-- toggle button for mobile nav -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <h1>Emily Erickson</h1>
-    <img src="images/headshot.jpg" width=81px/>
-    <p>Hi. I'm Emily🙃</p>
-    <p>I'm a sophomore at the University of Utah studying data science, software development, and systems engineering.
-        I am passionate about education reform, especially alternative college programs. Outside of school, I am an 
-        aerialist. I just published my second book.
-    </p>
-    <a href=https://www.amazon.com/Art-Earning-Straight-Sacrificing-Schedule/dp/B09VH1HNY5/ref=sr_1_1?keywords=
-    the+art+of+the+a+emily+erickson&qid=1653322830&sr=8-1>📚 Checkout My Book on Amazon</a>
-    <a href="https://www.youtube.com/watch?v=-a13Fq_IhB0">🎪 See One of My Aerial Hoop Performances</a>
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item text-white">
+                        <a class="nav-link" href="/#about">Home</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link" href="/#projects">Projects</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link" href="/#resume">Resume</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link " href="/#contact"><b>Contact</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- picture and intro -->
+    <section class="about">
+        <div class="container-lg">
+            <div class="row justify-content-center align-items-cuenter">
+                <div class="col-md-6 text-center text-md-start">
+                    <h3 class="display-3 fw-bold">Hi, I'm Emily. </h3>
+                    <p class="lead my-4">I'm a sophomore at the University of Utah studying business process optimization and edtech entrepreneurship. I've written and published two book and am an aerialist.</p>
+                    <p class="text-muted">This portfolio was created as part of the Google SPS program. The projects listed and elements contained in it are just as much an exploration of web development principles as a personal statement.</p>
+                    <h4>What I'm up to now: </h4>
+                    <ul>
+                        <li>Building a data aggregation platform for WGU Labs</li>
+                        <li>Training handstand press ups</li>
+                        <li>Promoting my latest book, <i>The Art of the A</i></li>
+                    </ul>
+                    <h4>Links 🔗</h4>
+                    <div><a href="https://www.amazon.com/dp/B09VH2XKBQ/" target="_blank">📕 Purchase <i>The Art of the A</i> Here</a></div>
+                    <div><a href="https://www.youtube.com/watch?v=3J_9ZCI0K9o" target="_blank">🎪 Watch One of My Aerial Hoop Routines</a></div>
 
-    <div class="columns">
-        <div class="column_module">
-            <h2>What I'm up to</h2>
-            <p>I'm doing a data science internship at WGU's Education Innovation Lab.
-                I'm participating in the Google SSP program.
-                I'm reading some good textbooks.
-            </p>
+                    <button class="btn btn-outline-dark my-2" onclick="showRandomFact()">Click to See a Random Fact About Me</button>
+                    <p id="fact-container"></p>
+                    <p><a href="/random-fact">See Server Response Behind ⤴</a></p>
+
+                </div>
+                <div class="col-md-4 text-center"> 
+                    <img class="img-fluid align-self-center" src="images/headshot.jpg" alt="picture of me">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- project gallery -->
+    <section id="projects">
+        <div class="container-lg">
+            <div class="text-center">
+                <h2>Project Gallery</h2>
+                <p class="lead text-muted">Checkout some of the projects I've done.</p>
+                <!-- Would be cool to add tag group which filters project by skill -->
+            </div>
+
+            <div class="row text-center">
+                <div class="row align-items-center justify-content-center g-4">
+                    <div class="col">
+                        <div class="card">
+                            <a href="/datastore_project.html"><img src="images/code_screen.png" class="card-img-top" alt="cloud shell editor"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Using Datastore to Log Form Inputs</h5>
+                                <p class="card-text">View responses from the form at the bottom of this page.</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Completed June 28, 2022</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <a href="/blank_project.html"><img src="images/blank_page.png" class="card-img-top" alt="blank page text"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">A Blank Page</h5>
+                                <p class="card-text">A beautiful blank page, soon to be replaced by a real project.</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Completed July 8, 2022</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- my resume tabs -->
+    <section id="resume">
+        <div class="text-center">
+            <h2>My Resume</h2>
         </div>
 
-        <div class="column_module"></div>
-            <h2>Experience</h2>
-            <p>Content creator for Moxy Movement. Bank of America Student Leaders Program.</p>
+        <div class="container-lg">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-education" type="button" role="tab" aria-controls="nav-education" aria-selected="false">Education</button>
+                  <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-awards" type="button" role="tab" aria-controls="nav-awards" aria-selected="true">Awards/Achievements</button>
+                  <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-experience" type="button" role="tab" aria-controls="nav-experience" aria-selected="false">Work Experience</button>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane show active fade p-3" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+                  <h2>Education</h2>
+                  <p>University of Utah (2021-Present)</p>
+                  <ul>
+                      <li>Pursuing Honors BS in Data Science and Certificate in Systems Engineering</li>
+                      <li>Relevant Coursework: Data Wrangling (DS2500), Intro to Data Science (COMP 5630), Accelerated Intro to Object-Oriented Programming (CS 1420), Data Structures and Algorithms (CS 2420)</li>
+                  </ul>
+                  <p>Completed Google Data Analytics Certification (Summer 2021)</p>
+                  <p>Salt Lake Community College (2019-2021)</p>
+                  <ul><li>Graduated with AS in General Studies, 4.0</li></ul>
+                  <p>Alta High School (2017-2021)</p>
+                  <ul><li>Honors Diploma, Seal of Biliteracy, National Honor Society President, 4.0, Class Rank 1/563</li></ul>
+                </div>
+            
+                <div class="tab-pane fade p-3" id="nav-awards" role="tabpanel" aria-labelledby="nav-awards-tab">
+                    <h2>Achievements and Awards</h2>
+                    <ul>
+                        <li>2021 Utah Business and Marketing Sterling Scholar, National Merit Scholar</li>
+                        <li>Daniels Fund Scholar</li>
+                        <li>Wrote and published two books: Unlearned: A Students Perspective on
+                          Bridging the Divide Between Schooling and Educatedness and The Art of the A: A Guide to Earning A’s in Middle and High School Without Sacrificing Your Social Life, Sleep Schedule, or Sanity</li>
+                        <li>Winner of University of Utah Diversity Shark Tank Pitch competition. Secured funding and mentorship from VP of Diversity and Inclusion to launch Conversation Tables project</li>
+                        <li>Winner of University of Utah’s inaugural Engineering Entrepreneurship Pitch competition</li>
+                    </ul>
+                  </div>
+
+                <div class="tab-pane fade p-3" id="nav-experience" role="tabpanel" aria-labelledby="nav-experience-tab">
+                  <h2>Work Experience</h2>
+                  <p><b>Moxy Movement Digital Content Creator (January 2021 - Present): </b>Responsible for gym’s videography and blog post creation needs.</p>
+                  <p><b>Avid Polewear (March 2020 - December 2020): </b>Started and ran an online store selling specialty clothing to aerialists at outstanding prices. Set up online store, researched and worked with suppliers, managed finances, ran Facebook ad campaigns, and handled distribution and customer service. Taught me more about business in the real world in ten months than high school did in years.</p>
+                  <p><b>Bank of America Student Leaders Internship Program (Summer of 2020): </b>Worked with Bank of America VP on building alumni connection program and digital content strategies for local nonprofit, Junior Achievement. Appeared on TV and radio shows as spokesperson for online learning strategy campaign</p>
+                </div>
+              </div>
         </div>
-    </div>
+    </section>
+    
+    <!-- contact me -->
+    <section id="contact">
+        <div class="container-lg">
+            <div class="text-center">
+                <h2>Want to connect with me?</h2>
+                <p class="lead">Email me <a href="mailto:emily@gmail.com">here</a> or fill out the form below.</p>
+                <p class="lead text-muted">*Note: All messages will be publicly visible in the Datastore project above.</p>
+            </div>
+        
 
-<div id="gallery">    
-    <h2>Projects</h2>
-    <img src="images/code_screen.jpeg">
-    <img src="images/code_screen.jpeg">
-    <img src="images/code_screen.jpeg">
-    <img src="images/code_screen.jpeg">
-    <img src="images/code_screen.jpeg">
-    <img src="images/code_screen.jpeg">
+            <div class="row justify-content-center my-5">
+                <div class="column-lg-6">
+                    <form action="/form-handler" method="POST">
+                        <label for="name" class="form-label">Name:</label>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text">
+                                <i class="bi bi-person-fill"></i>
+                            </span>
+                            <input type="text" class="form-control" name="name" id="name", placeholder="e.g. Mario">
+                        </div>
 
-</div>
+                        <label for="email" class="form-label">Email address:</label>
+                        <div class="mb-4 input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope-fill"></i>
+                            </span>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="e.g. mario@example.com">
+                        </div>
 
-<p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-  </body>
+                        <label for="subject" class="form-label">Subject</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-chat-right-dots-fill"></i>
+                            </span>
+                            <select class="form-select" id="subject" name="reason">
+                                <option value="work with me" selected>Work with me</option>
+                                <option value="saying hi">Saying hi</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-floating mb-4 mt-5">
+                            <textarea id="message" name="message" class="form-control" style="height: 140px"></textarea>
+                            <label for="message">Your message...</label>
+                        </div>
+
+                        <div class="mb-4 text-center">
+                            <button type="submit" class="btn btn-secondary">Submit</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script> 
+</body>
 </html>
